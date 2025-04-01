@@ -45,7 +45,7 @@ function Info() {
     }
 
     const options = {
-      key: process.env.REACT_APP_API_KEY,
+      key: process.env.REACT_APP_API_KEY, // Your Razor Pay Test Mode API Key Here
       amount: 19900, 
       currency: "INR",
       name: "test",

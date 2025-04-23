@@ -5,14 +5,7 @@
 }
 
 html {
-  display: block;
-}
-
-@media (max-width: 446px) {
-
-  html {
-    display: flex !important;
-  }
+  display: flex;
 }
 
 body {

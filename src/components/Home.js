@@ -15,22 +15,30 @@ function HomePage() {
   const handleSearchLocation = async (e) => {
     const value = e.target.value;
     setsearchLocation(value);
-    
+  
     if (value.trim() === "") {
       setResults([]);
       return;
     }
-    
-    try {
-      const response = await fetch(`https://kiki56qweb.pythonanywhere.com/search?q=${value}`);
-      const data = await response.json();
-      setResults(data);
-      setShowResults(true);
-    } catch (error) {
-      console.error("Error fetching city data:", error);
-    }
+  
+    const fetchData = async (attempt = 1) => {
+      try {
+        const response = await fetch(`https://kiki56qweb.pythonanywhere.com/search?q=${value}`);
+        if (!response.ok) throw new Error("Server error");
+        const data = await response.json();
+        setResults(data);
+        setShowResults(true);
+      } catch (error) {
+        console.error(`Attempt ${attempt} failed`, error);
+        if (attempt < 2) {
+          setTimeout(() => fetchData(attempt + 1), 1500); // Retry once after delay
+        }
+      }
+    };
+  
+    fetchData();
   };
-
+  
   const handleSelectCity = (cityName) => {
     setsearchLocation(cityName);
     setShowResults(false);

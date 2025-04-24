@@ -180,9 +180,9 @@ function Menu() {
           <li><Link to="/about">About</Link></li>
         </ul>
       </nav>
-      <div className="filter-container">
+      <div className="filter-container filter-container-menu">
         <select 
-          className="filter-dropdown"
+          className="filter-dropdown filter-dropdown-menu"
           value={propertytype}
           onChange={(e) => setPropertyType(e.target.value)}
         >
@@ -200,7 +200,7 @@ function Menu() {
         </select>
 
         <select 
-          className="filter-dropdown"
+          className="filter-dropdown filter-dropdown-menu"
           value={transactionType}
           onChange={(e) => settransactionType(e.target.value)}
         >
@@ -208,7 +208,7 @@ function Menu() {
           <option value="Rent">Rent</option>
         </select>
 
-        <div className="custom-dropdown" ref={dropdownRef}>
+        <div className="custom-dropdown custom-dropdown-menu" ref={dropdownRef}>
           <input type="text" className="search-input" placeholder="Search for Cities or Neighborhoods..." value={searchlocation} onChange={handleSearchLocation} onFocus={() => results.length > 0 && setShowResults(true)} />
           {showResults && results.length > 0 && (
             <div className="dropdown-results">
